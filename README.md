@@ -6,16 +6,19 @@
 
 * 부품 리스트:  
     * [솔레이노드x2](https://t.ly/c1NPf)  
-    * 아두이노 우노
-    * 블루투스 모델x2
+    * *아두이노 우노*
+    * *hc-06*
+    * [hc-05](https://www.devicemart.co.kr/goods/view?no=1278894)
     * 아두이노 나노
-    * 자이로 센서
-    * 부저
+    * *자이로 센서*
+    * *부저*
     * 3D 모델링
-    * 브래드보드X2
-    * 점퍼 케이블
-    * 9v배터리X2
+    * *브래드보드X2*
+    * *점퍼 케이블*
+    * 9v배터리
+    * [충전식 9v배터리](https://www.tmon.co.kr/deal/4540700634)
     * 9v배터리 교류 어뎁터
+    * [태양광 충전기](http://item.gmarket.co.kr/Item?goodscode=2308230841&buyboxtype=ad)
     * 9v배터리 직류 어뎁터
   
 솔레노이드 원리
@@ -37,8 +40,66 @@
 움직임이 5번 감지될시 경보음을 울린다.
 ```
 
-소스 코드
+솔레노이드 소스 코드
 ```c
-#include <iostream>
+void setup() {
+    pinMode(4, OUTPUT);
+}
 
+void loop() {
+    // 불루투스 연결시
+    digitalWrite(4, HIGH); 
+    // 불루투스 연결 불가시
+    digitalWrite(4, LOW); 
+}
+```
+
+블루투스 연결 코드
+```c
+#include <SoftwareSerial.h>
+
+SoftwareSerial bluetooth(2, 3); //BlueTooth(Rx, Tx)
+
+void setup() {
+  Serial.begin(9600);
+  bluetooth.begin(9600);
+}
+
+void loop() {
+  if (bluetooth.available()){
+    Serial.write(bluetooth.read());
+  }
+  if (Serial.available()){
+    bluetooth.write(Serial.read());
+  }
+}
+
+```
+
+총합 코드
+```c
+#include <SoftwareSerial.h>
+
+SoftwareSerial bluetooth(2, 3); //BlueTooth(Rx, Tx)
+
+void setup() {
+  Serial.begin(9600);
+  bluetooth.begin(9600);
+  pinMode(4, OUTPUT);
+  pinMode(5, INPUT); //state
+}
+
+void loop() {
+  if (bluetooth.available()){
+    Serial.write(bluetooth.read());
+  }
+  if (Serial.available()){
+    bluetooth.write(Serial.read());
+  }
+  if(digitalRead(5)){
+    digitalWrite(4, HIGH); 
+  }else {
+    digitalWrite(4, LOW);
+  }
+}
 ```
