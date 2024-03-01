@@ -1,34 +1,35 @@
-자전거 잠금장치 개발일지
+Bike lock development log
 =
 
-자전거를 학원에 이동할때 사용하는데 자꾸 자물쇠를 잠그는 것을 깜박해 잠그고 가지않는다.  
-그래서 자동 잠금장치를 생각해냈다.
+When I went to school, I ride a bike, but I didn't lock my bike.  
+That why I dicide to make a auto bike lock.
 
-*참고: *사선 글시는 있는 부품이다.*  
-*참고: 솔레이노드는 12v다.(아두이노 출력 전압:5v)
+*Note: *diagonal word is what I have.*  
+*Note2: Solenoid is 12V.(Arduino's output: 5v)  
 
-* 부품 리스트:  
-    * [솔레이노드x2](https://t.ly/c1NPf)  
-    * *아두이노 우노*
-    * *hc-06*
-    * [hc-05](https://www.devicemart.co.kr/goods/view?no=1278894)
-    * [아두이노 나노](https://t.ly/7SXEn)
-    * *자이로 센서*
-    * *부저*
-    * 3D 모델링
-    * *브래드보드X2*
-    * *점퍼 케이블*
-    * 9v배터리
-    * [충전식 9v배터리](https://www.tmon.co.kr/deal/4540700634)
-    * [9v배터리 교류 어뎁터](t.ly/F8_vg)
+* Pats list
+    * [Solenoid*2](https://t.ly/9C-sr)
+    * *Arduino Uno*
+    * *hc-06(Bluetooth)*
+    * *hc-05(Bluetooth)*
+    * Arduino Nano(https://t.ly/7SXEn)
+    * *gyro senser*
+    * *buzzer*
+    * 3D printed thing
+    * *two breadboard*
+    * *jumper cables*
+    * 9v battery
+    * Rechargeable 9v battery (https://t.ly/Uk5Wm)
+    * [9v battery AC adapter](https://t.ly/9kyuR)
     * *USB A <-> USB MICO B* 
-    * [태양광 충전기](http://item.gmarket.co.kr/Item?goodscode=2308230841&buyboxtype=ad)
-    * 9v배터리 직류 어뎁터
+    * [solar charger](https://t.ly/YcdLv)
+    * 9v battery DC adapter
   
-솔레노이드
+Solenoid
+
 ![](img/solanoid.png)
-처음에는 솔레노이드를 사용할 계획이였으나,손으로 눌리기 때문에 실패.  
-블루투스 연결 코드
+At first, I planned to use a solenoid, but it failed because it had to be pressed by hand.    
+BlueTooth connect code
 ```c
 #include <SoftwareSerial.h>
 
@@ -50,7 +51,7 @@ void loop() {
 
 ```
 
-총합 코드
+Final Code
 ```c
 #include <SoftwareSerial.h>
 
